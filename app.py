@@ -2,7 +2,7 @@
 import os.path
 import sys
 reload(sys)
-sys.setdefaultencoding('UTF-8');
+sys.setdefaultencoding('UTF-8');  # @UndefinedVariable
 from database import init_db
 from flask import Flask
 import config
@@ -14,7 +14,7 @@ app.config.from_object(config)
 
 def register_blueprints(app):
     # Prevents circular imports
-    from views import posts
+    from views import posts  # @UnresolvedImport
     from views import reply
     from views import user
     #from views import admin

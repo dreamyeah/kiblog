@@ -13,9 +13,9 @@ BLOG_URL = 'http://www.demo.com'
 BLOG_NAME = 'Blog'
 
 #admin info
-ADMIN_INFO = ''
-ADMIN_EMAIL = ''
-ADMIN_USERNAME = ''
+ADMIN_INFO = 'Gavin'
+ADMIN_EMAIL = 'gavin@163.com'
+ADMIN_USERNAME = 'Gavin'
 
 class rec: pass
 
