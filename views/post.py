@@ -26,11 +26,10 @@ def home(page):
     except ValueError: 
         page = 1
     #page = int(page)
-    count = db.query(Post).count();
+    count = db.query(Post).count();  # @UndefinedVariable
     page_count = (count + config.paged - 1) // config.paged
-    posts = db.query(Post).order_by(sa.desc(Post.created_date)).offset((page - 1) *
-            config.paged).limit(config.paged)
-    recent_replys = db.query(Reply).order_by(sa.desc(Reply.created_date)).limit(6)
+    posts = db.query(Post).order_by(sa.desc(Post.created_date)).offset((page - 1) *  config.paged).limit(config.paged)  # @UndefinedVariable
+    recent_replys = db.query(Reply).order_by(sa.desc(Reply.created_date)).limit(6)  # @UndefinedVariable
     return render_template("home.html", posts=posts, getDay=getDay, getMonth=getMonth, \
             getAvatar=getAvatar, replyContent=replyContent, formatDate=formatDate, formatDate2=formatDate2, showPost=showPost, page=page,
             page_count=page_count, recent_replys=recent_replys)
@@ -49,9 +48,9 @@ def show_post(pid):
         replyer['name'] = config.admin_username
         replyer['email'] = config.admin_email
         replyer['website'] = config.url
-    post = db.query(Post).get(pid)
+    post = db.query(Post).get(pid)  # @UndefinedVariable
     if not post: abort(404)
-    replys = db.query(Reply).filter(Reply.pid == pid).all()
+    replys = db.query(Reply).filter(Reply.pid == pid).all()# @UndefinedVariable
     return render_template("post.html", post=post, replys=replys, \
             formatDate=formatDate, formatDate2=formatDate2, getAvatar=getAvatar, replyer=replyer)
 
@@ -65,10 +64,9 @@ def list_archive(page = 1):
     except ValueError: 
         page = 1
     #page = int(page)
-    count = db.query(Post).count()
+    count = db.query(Post).count()# @UndefinedVariable
     page_count = (count + config.archive_paged - 1) // config.archive_paged
-    posts = db.query(Post).order_by(sa.desc(Post.created_date)).offset((page - 1) *
-            config.archive_paged).limit(config.archive_paged)
+    posts = db.query(Post).order_by(sa.desc(Post.created_date)).offset((page - 1) * config.archive_paged).limit(config.archive_paged)# @UndefinedVariable
     return render_template("archive.html", posts=posts, formatDate2=formatDate2, page=page,
              page_count=page_count, getAvatar=getAvatar)
 
@@ -85,9 +83,8 @@ def add_post():
     origin_content = request.form["post[content]"]
     content = markdown.markdown(origin_content)
     if title != '' and origin_content != '':
-        db.add(Post(title=title, content=content,
-            origin_content=origin_content))
-        db.commit()
+        db.add(Post(title=title, content=content, origin_content=origin_content))# @UndefinedVariable
+        db.commit()# @UndefinedVariable
         return redirect("/")
     else:
         return render_template("postadd.html", error=u"标题或内容不能为空。",getAvatar=getAvatar)
@@ -97,7 +94,7 @@ def add_post():
 def edit_post(pid):
     if request.method == 'GET':
         base.checkAdmin()
-        post = db.query(Post).get(pid)
+        post = db.query(Post).get(pid)# @UndefinedVariable
         if post is None:
             abort(404)
         return render_template("postedit.html", post=post,getAvatar=getAvatar)
@@ -107,11 +104,11 @@ def edit_post(pid):
     origin_content = request.form["post[content]"]
     content = markdown.markdown(origin_content)
     if title != '' and origin_content != '':
-        post = db.query(Post).get(pid)
+        post = db.query(Post).get(pid)# @UndefinedVariable
         post.title = title
         post.origin_content = origin_content
         post.content = content
-        db.commit()
+        db.commit()# @UndefinedVariable
         return redirect("/post/%d" % (int(pid)))
     else:
         return render_template("postedit.html", error=u"标题或内容不能为空。",getAvatar=getAvatar)
