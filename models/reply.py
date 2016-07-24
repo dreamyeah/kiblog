@@ -30,7 +30,7 @@ class Reply(Base):
         self.email = email
         self.website = website
         self.content = content
-        self.update_date = update_date
+        self.update_date = time.time()
         self.number = number
         if created_date == None:
             self.created_date = time.time()

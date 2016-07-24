@@ -21,15 +21,11 @@ class Post(Base):
             created_date=None, update_date=None):
         self.title = title
         self.content = content
-        self.update_date = update_date
+        self.update_date = time.time()
         if created_date == None:
             self.created_date = time.time()
         else:
             self.created_date = created_date
-        if update_date == None:
-            self.update_date = time.time()
-        else:
-            self.update_date = update_date
         if origin_content == None:
             self.origin_content = content
         else:
