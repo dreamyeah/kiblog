@@ -2,7 +2,7 @@
 import os.path
 import sys
 reload(sys)
-sys.setdefaultencoding('UTF-8');  # @UndefinedVariable
+sys.setdefaultencoding('utf-8');  # @UndefinedVariable
 from database import init_db
 from flask import Flask
 import config

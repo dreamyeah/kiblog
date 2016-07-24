@@ -16,7 +16,7 @@ BLOG_NAME = 'Blog'
 ADMIN_INFO = 'Gavin'
 ADMIN_EMAIL = 'gavin@163.com'
 ADMIN_USERNAME = 'Gavin'
-
+ADMIN_URL = 'Gavin'
 class rec: pass
 
 rec.database = 'mysql://%s:%s@%s/%s' % (_DBUSER, _DBPASS, _DBHOST,_DBNAME)
