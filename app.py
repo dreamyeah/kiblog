@@ -2,8 +2,7 @@
 import os.path
 import sys
 reload(sys)
-sys.setdefaultencoding('utf-8')
-
+sys.setdefaultencoding('UTF-8');
 from database import init_db
 from flask import Flask
 import config
